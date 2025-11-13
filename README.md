@@ -27,7 +27,7 @@ Setting up the plugin involves two main steps:
 
 ### Step 1: Install the Plugin
 
-1.  Download the latest release from the [GitHub Releases page](https://github.com/majidnazari65/gf-recaptcha-v3/archive/refs/heads/main.zip).
+1.  Download the latest release from the [GitHub Releases page](https://github.com/majidnazari65/gf-recaptcha-v3/releases).
 2.  In your WordPress dashboard, go to **Plugins > Add New > Upload Plugin**.
 3.  Select the downloaded `.zip` file and install it.
 4.  Activate the plugin.
@@ -91,7 +91,7 @@ This plugin is licensed under the [GPLv2 (or later)](https://www.gnu.org/license
 
 ### مرحله 1: نصب افزونه
 
-1.  آخرین نسخه افزونه را از [صفحه Releases گیت‌هاب](https://github.com/majidnazari65/gf-recaptcha-v3/archive/refs/heads/main.zip) دانلود کنید.
+1.  آخرین نسخه افزونه را از [صفحه Releases گیت‌هاب](https://github.com/majidnazari65/gf-recaptcha-v3/releases) دانلود کنید.
 2.  به پیشخوان وردپرس خود بروید: **افزونه‌ها > افزودن > بارگذاری افزونه**.
 3.  فایل `.zip` دانلود شده را انتخاب و نصب کنید.
 4.  افزونه را فعال نمایید.
