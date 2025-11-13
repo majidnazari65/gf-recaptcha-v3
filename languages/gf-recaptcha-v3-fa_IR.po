@@ -12,6 +12,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0\n"
 
+#: gf-recaptcha-v3.php:3
+msgid "Gravity Forms reCAPTCHA v3"
+msgstr "ریکپچا ورژن 3 برای گرویتی فرمز"
+
+#: gf-recaptcha-v3.php:4
+msgid "Adds Google reCAPTCHA v3 validation to Gravity Forms."
+msgstr "افزودن ریکپچا ورژن 3 به فرمهای گرویتی فرمز"
+
+#: gf-recaptcha-v3.php:6
+msgid "Aniltarah"
+msgstr "آنیل طراح"
+
 #: gf-recaptcha-v3.php:92
 msgid "Google reCAPTCHA v3 Keys"
 msgstr "کلیدهای reCAPTCHA v3 گوگل"
