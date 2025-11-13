@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gravity Forms reCAPTCHA v3 1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-13 14:00+0100\n"
+"PO-Revision-Date: 2025-11-13 14:00+0100\n"
+"Last-Translator: Aniltarah <info@aniltarah.com>\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+
+#: gf-recaptcha-v3.php:92
+msgid "Google reCAPTCHA v3 Keys"
+msgstr "کلیدهای reCAPTCHA v3 گوگل"
+
+#: gf-recaptcha-v3.php:100 gf-recaptcha-v3.php:103
+msgid "Site Key"
+msgstr "کلید سایت (Site Key)"
+
+#: gf-recaptcha-v3.php:109 gf-recaptcha-v3.php:112
+msgid "Secret Key"
+msgstr "کلید مخفی (Secret Key)"
+
+#: gf-recaptcha-v3.php:118
+msgid "Score Threshold"
+msgstr "آستانه امتیاز"
+
+#: gf-recaptcha-v3.php:121
+msgid "Minimum score (e.g., 0.5)"
+msgstr "حداقل امتیاز (مثلا: 0.5)"
+
+#: gf-recaptcha-v3.php:131
+msgid "Google recommends 0.5 as a default."
+msgstr "گوگل امتیاز 0.5 را به عنوان پیش‌فرض توصیه می‌کند."
+
+#: gf-recaptcha-v3.php:234
+msgid "reCAPTCHA Error: Token not found."
+msgstr "خطای reCAPTCHA: توکن یافت نشد."
+
+#: gf-recaptcha-v3.php:253
+msgid "Error connecting to reCAPTCHA server."
+msgstr "خطا در ارتباط با سرور reCAPTCHA."
+
+#: gf-recaptcha-v3.php:264
+msgid "reCAPTCHA validation failed. Please try again."
+msgstr "اعتبارسنجی reCAPTCHA ناموفق بود. لطفا دوباره تلاش کنید."
+
+#: gf-recaptcha-v3.php:321
+msgid "reCAPTCHA v3 Settings"
+msgstr "تنظیمات reCAPTCHA v3"
+
+#: gf-recaptcha-v3.php:325
+msgid "Enable reCAPTCHA v3"
+msgstr "فعال‌سازی reCAPTCHA v3"
+
+#: gf-recaptcha-v3.php:331
+msgid "Enable reCAPTCHA v3 for this form"
+msgstr "فعال‌سازی reCAPTCHA v3 برای این فرم"
+
+#: gf-recaptcha-v3.php:336
+msgid "Adds Google reCAPTCHA v3 validation to this form. This is enabled by default for all forms unless explicitly disabled."
+msgstr "اعتبارسنجی reCAPTCHA v3 گوگل را به این فرم اضافه می‌کند. این گزینه به طور پیش‌فرض برای همه‌ی فرم‌ها فعال است مگر اینکه صراحتاً غیرفعال شود."
+
+#: gf-recaptcha-v3.php:359
+msgid "reCAPTCHA v3"
+msgstr "reCAPTCHA v3"
+
+#: gf-recaptcha-v3.php:378
+msgid "Save Settings"
+msgstr "ذخیره تنظیمات"
