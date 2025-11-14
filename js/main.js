@@ -1,63 +1,64 @@
 jQuery(document).ready(function($) {
 
-    // کلید سایت فقط یک بار بررسی می‌شود
+    // Site key is checked only once
     if (typeof grv3_site_key === 'undefined') {
         console.error('reCAPTCHA Site Key is not defined.');
         return;
     }
 
     /**
-     * بخش 1: Event Handler اصلی با استفاده از Event Delegation
+     * Section 1: Main Event Handler using Event Delegation
      *
-     * ما listener را به 'document' متصل می‌کنیم.
-     * این تضمین می‌کند که حتی اگر فرم توسط AJAX جایگزین شود،
-     * این listener همچنان رویداد 'submit' را دریافت می‌کند.
+     * We bind the listener to 'document'.
+     * This ensures that even if the form is replaced by AJAX,
+     * this listener will still catch the 'submit' event.
      */
     $(document).on('submit', '.gform_wrapper form', function(event) {
         
-        // 'this' به فرمی اشاره دارد که submit شده است
+        // 'this' refers to the form that was submitted
         var $form = $(this); 
         var form_id = $form.attr('id').split('_')[1];
         var $token_field = $('#g-recaptcha-response-' + form_id);
 
-        // بررسی می‌کنیم که آیا این فرم اصلاً فیلد توکن ما را دارد (یعنی کپچا برایش فعال است)
+        // Check if this form even has our token field (i.e., recaptcha is active for it)
         if ($token_field.length) {
             
-            // اگر فیلد توکن *خالی* است، باید یک توکن جدید بگیریم
+            // If the token field is *empty*, we need to get a new token
             if ( ! $token_field.val() ) {
                 
-                // 1. جلوی ارسال فرم را بگیر
+                // 1. Prevent the form submission
                 event.preventDefault(); 
                 
-                // 2. درخواست توکن جدید
+                // 2. Request a new token
                 grecaptcha.ready(function() {
                     grecaptcha.execute(grv3_site_key, { action: 'gravity_form_submit' })
                         .then(function(token) {
-                            // 3. توکن را در فیلد مخفی قرار بده
+                            // 3. Place the token in the hidden field
                             $token_field.val(token);
                             
-                            // 4. حالا فرم را دوباره (این بار با توکن) ارسال کن
+                            // 4. Now, submit the form again (this time with the token)
                             $form.submit();
                         });
                 });
             }
-            // اگر فیلد توکن *مقدار داشت* (یعنی از مرحله 4 می‌آید)،
-            // اجازه می‌دهیم فرم به صورت عادی ارسال شود.
+            // If the token field *has a value* (meaning it's coming from step 4),
+            // we let the form submit normally.
         }
     });
 
     /**
-     * بخش 2: پاک کردن توکن پس از رندر AJAX (در صورت خطا)
+     * Section 2: Clear token after AJAX render (on error)
      *
-     * این بخش هنوز ضروری است.
-     * وقتی فرم با خطا برمی‌گردد، توکن قبلی (که استفاده شده) هنوز در فیلد وجود دارد.
-     * ما باید آن را خالی کنیم تا در ارسال بعدی (بخش 1)، کد مجبور شود توکن *جدید* بگیرد.
+     * This part is still necessary.
+     * When the form returns with an error, the previous (used) token is still in the field.
+     * We must clear it so that on the next submit (Section 1), the code is forced
+     * to get a *new* token.
      */
     $(document).on('gform_post_render', function(event, form_id, current_page) {
         var $token_field = $('#g-recaptcha-response-' + form_id);
         
         if ($token_field.length) {
-            $token_field.val(''); // فیلد توکن را خالی کن
+            $token_field.val(''); // Clear the token field
         }
     });
 

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-// اطمینان از اینکه گرویتی فرمز فعال است
+// check if gravityforms is enabled
 if ( ! class_exists( 'GFCommon' ) ) {
     return;
 }
@@ -30,23 +30,23 @@ function grv3_load_plugin() {
     load_plugin_textdomain( 'gf-recaptcha-v3', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 
-    // بخش 1: ثبت تنظیمات (برای options.php)
+    // settings (for options.php)
     add_action( 'admin_init', 'grv3_settings_init' );
 
-    // بخش 2: بارگذاری اسکریپت‌ها
+    // enqueue scripts
     add_action( 'gform_enqueue_scripts', 'grv3_enqueue_scripts', 10, 2 );
 
-    // بخش 3: اضافه کردن فیلد مخفی
+    // add recaptcha hidden field
     add_action( 'gform_form_tag', 'grv3_add_hidden_field', 10, 2 );
 
-    // بخش 4: اعتبارسنجی
+    // recaptcha validation
     add_filter( 'gform_validation', 'grv3_validate_captcha' );
 
-    // بخش 6: تنظیمات خود فرم
+    // gravityforms form setting
     add_filter( 'gform_form_settings_fields', 'grv3_add_form_setting_field', 10, 2 );
     add_filter( 'gform_pre_save_form_settings', 'grv3_save_form_setting', 10, 2 );
 
-    // بخش 7: ادغام صفحه تنظیمات با گرویتی فرمز
+    // add settings to gravityforms setting page
     add_filter( 'gform_settings_menu', 'grv3_add_settings_tab', 10, 1 );
     add_action( 'gform_settings_' . GRV3_SETTINGS_SLUG, 'grv3_render_settings_page_content' );
 
@@ -54,10 +54,10 @@ function grv3_load_plugin() {
 
 
 /**
- * بخش 1: صفحه تنظیمات در ادمین
+ * settings (for options.php)
  */
 
-// ثبت تنظیمات
+// register settings 
 function grv3_settings_init() {
     register_setting( GRV3_OPTION_GROUP, GRV3_OPTION_NAME );
 
@@ -96,7 +96,7 @@ function grv3_settings_init() {
     );
 }
 
-// رندر کردن فیلدهای ورودی
+// render settings fields
 function grv3_field_callback( $args ) {
     $options = get_option( GRV3_OPTION_NAME );
     $value = isset( $options[ $args['id'] ] ) ? $options[ $args['id'] ] : '';
@@ -112,14 +112,14 @@ function grv3_field_callback( $args ) {
     }
 }
 
-// رندر کردن صفحه تنظیمات
+// render options page
 function grv3_render_settings_fields() {
     settings_fields( GRV3_OPTION_GROUP );
     do_settings_sections( GRV3_SETTINGS_SLUG );
 }
 
 /**
- * بخش 2: بارگذاری اسکریپت‌ها در فرانت‌اند
+ * enqueue fornt scripts
  */
 function grv3_enqueue_scripts( $form, $is_ajax ) {
     static $scripts_added = false;
@@ -158,7 +158,7 @@ function grv3_enqueue_scripts( $form, $is_ajax ) {
 }
 
 /**
- * بخش 3: اضافه کردن فیلد مخفی به فرم
+ * add recaptcha hidden filed
  */
 function grv3_add_hidden_field( $form_tag, $form ) {
 
@@ -173,7 +173,7 @@ function grv3_add_hidden_field( $form_tag, $form ) {
 }
 
 /**
- * بخش 4: اعتبارسنجی سمت سرور
+ * recaptcha validation
  */
 function grv3_validate_captcha( $validation_result ) {
     $form = $validation_result['form'];
@@ -222,7 +222,7 @@ function grv3_validate_captcha( $validation_result ) {
     return $validation_result;
 }
 
-// تابع کمکی برای تنظیم پیام خطا
+// helper function for show validation message
 function grv3_set_validation_error( &$validation_result, $form, $message ) {
     foreach ( $form['fields'] as &$field ) {
         if ( $field->type != 'hidden' && $field->type != 'html' ) {
@@ -234,7 +234,7 @@ function grv3_set_validation_error( &$validation_result, $form, $message ) {
 }
 
 /**
- * بخش 5: تابع کمکی برای بررسی وضعیت فرم
+ * helper function for check if recaptcha v3 is enabled for form
  */
 function grv3_is_recaptcha_enabled( $form ) {
     $options = get_option( GRV3_OPTION_NAME );
@@ -256,7 +256,7 @@ function grv3_is_recaptcha_enabled( $form ) {
 }
 
 /**
- * بخش 6: اضافه کردن فیلد به تنظیمات فرم
+ * add fields to form settings page
  */
 function grv3_add_form_setting_field( $fields, $form ) {
     
@@ -282,7 +282,6 @@ function grv3_add_form_setting_field( $fields, $form ) {
     return $fields;
 }
 
-// این هوک تضمین می‌کند که اگر تیک برداشته شد، مقدار '0' ذخیره شود
 function grv3_save_form_setting( $settings, $form ) {
     if ( ! isset( $settings['grv3_enabled'] ) ) {
         $settings['grv3_enabled'] = '0';
@@ -292,7 +291,7 @@ function grv3_save_form_setting( $settings, $form ) {
 
 
 /**
- * بخش 7: ادغام صفحه تنظیمات با تنظیمات گرویتی فرمز
+ * add gravityforms settings tab
  */
 function grv3_add_settings_tab( $tabs ) {
     
@@ -303,7 +302,7 @@ function grv3_add_settings_tab( $tabs ) {
     return $tabs;
 }
 
-// 2. تعریف محتوای آن تب
+// add setting forms to new tab
 function grv3_render_settings_page_content() {
         
     ?>
@@ -313,7 +312,6 @@ function grv3_render_settings_page_content() {
         
         ?>
         <p class="submit">
-            <?php // ترجمه شده ?>
             <input type="submit" name="submit" id="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'gf-recaptcha-v3' ); ?>" />
         </p>
     </form>
