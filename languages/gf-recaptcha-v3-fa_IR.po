@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Gravity Forms reCAPTCHA v3 1.4\n"
+"Project-Id-Version: reCAPTCHA v3 For Gravity Forms 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-13 14:00+0100\n"
 "PO-Revision-Date: 2025-11-13 14:00+0100\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Poedit 3.0\n"
 
 #: gf-recaptcha-v3.php:3
-msgid "Gravity Forms reCAPTCHA v3"
+msgid "reCAPTCHA v3 for Gravity Forms"
 msgstr "ریکپچا ورژن 3 برای گرویتی فرمز"
 
 #: gf-recaptcha-v3.php:4
